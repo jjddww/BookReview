@@ -7,6 +7,7 @@ import retrofit2.http.Query
 
 interface BookAPI {
     @GET("/v1/search/book.json")
-    fun getBookList(@Query("query") keyword : String)
+    fun getBookList(@Query("query") keyword : String,
+                    @Query("display") count: Int)
     : Call<SearchBookDto>
 }

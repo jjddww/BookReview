@@ -10,7 +10,7 @@ import com.example.bookreview.R
 import com.example.bookreview.databinding.ItemBookBinding
 import com.example.bookreview.model.Book
 
-class BookListAdapter() : ListAdapter<Book, BookListAdapter.BookItemViewHolder> (diffUtil){
+class BookListAdapter(val clickListener: (Book) -> Unit) : ListAdapter<Book, BookListAdapter.BookItemViewHolder> (diffUtil){
 
     inner class BookItemViewHolder(private val binding: ItemBookBinding): RecyclerView.ViewHolder(binding.root) {
 
@@ -22,6 +22,10 @@ class BookListAdapter() : ListAdapter<Book, BookListAdapter.BookItemViewHolder> 
                 .centerCrop()
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(binding.bookThumbnail)
+
+            binding.root.setOnClickListener{
+                clickListener(bookModel)
+            }
 
         }
     }
